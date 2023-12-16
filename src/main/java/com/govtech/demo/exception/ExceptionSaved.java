@@ -1,0 +1,20 @@
+package com.govtech.demo.exception;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
+
+import java.io.Serializable;
+
+/**
+ * @author Sarav on 09 Jan 2023
+ * @project govtech
+ * @package com.govtech.viswa.exception
+ * @class ExceptionSaved
+ */
+
+@ResponseStatus(value = HttpStatus.OK)
+public class ExceptionSaved extends RuntimeException implements Serializable {
+    public ExceptionSaved(String message) {
+        super(message);
+    }
+}

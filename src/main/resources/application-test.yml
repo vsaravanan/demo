@@ -1,0 +1,62 @@
+#server.port: 5000
+#spring.datasource.url: jdbc:mysql://localhost:3306/viswa?serverTimezone=Asia/Singapore&allowPublicKeyRetrieval=true&useSSL=false
+#spring.datasource.username: myuser
+#spring.datasource.password: mypwd
+#spring.jpa.show-sql: true
+#spring.jpa.dialect: org.hibernate.dialect.MySQL8Dialect
+#spring.jpa.properties.hibernate.dialect: org.hibernate.dialect.MySQL8Dialect
+#spring.jpa.properties.hibernate.id.new_generator_mappings: false
+#spring.jpa.database-platform: org.hibernate.dialect.MySQL8Dialect
+
+server:
+  port : 10700
+  name : http://localhost:3333
+  # name : https://oyster.saravanjs.com/
+  # ssl:
+  #  key-store: classpath:config/oyster.p12
+  #  key-store-password: oysterstone
+  #  keyAlias: oyster
+
+spring:
+  datasource:
+#    driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
+#    url: jdbc:sqlserver://saravanjs.com:6666;DatabaseName=meeting;encrypt=true;trustServerCertificate=true
+#    username: UserViswa
+#    password: Password@23
+##    schema: classpath:droptables.sql, classpath:schema-mysql.sql
+##    data: classpath:data-static.sql
+##    initialization-mode: always
+    driverClassName: org.h2.Driver
+    #    url: jdbc:h2:mem:test;MODE=PostgreSQL;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    url: jdbc:h2:tcp://localhost/~/mastercard;MODE=PostgreSQL;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+    auto-commit: true
+    jpa:
+      show-sql: true
+      format-sql: true
+      use-sql-comments: true
+  #  test:
+  #    database:
+  #      replace: NONE  # run mySQL (instead of the default H2 embedded database). or @AutoConfigureTestDatabase(replace=Replace.NONE) or @EnableAutoConfiguration(exclude=AutoConfigureTestDatabase.class)
+  jpa:
+#    generate-ddl: true
+    hibernate:
+      #      ddl-auto: validate, update, create, create-drop, none
+      ddl-auto: create-drop
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+  cache:
+    type: none
+  jackson:
+    serialization:
+      FAIL_ON_EMPTY_BEANS: false
+
+
+logging:
+  file.clean-history-on-start: true
+  pattern.console: "%M - %msg%n"
+  pattern.file: "%msg%n"
+
